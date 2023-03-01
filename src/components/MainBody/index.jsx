@@ -42,6 +42,17 @@ const MainBody = () => {
       setEvents(updatedEvents);
     });
   };
+  const handleSearch = (e) => {
+    if (e.target.value === '') {
+      setFilteredEvents(events);
+    } else {
+      setFilteredEvents(
+        filteredEvents.filter((singleEvent) =>
+          singleEvent.name.toLowerCase().includes(e.target.value.toLowerCase())
+        )
+      );
+    }
+  };
   const handlerFilter = (e) => {
     const tag = e.target.value;
     if (tag === 'All') {
@@ -62,7 +73,7 @@ const MainBody = () => {
   };
   return filteredEvents ? (
     <div className="mainbody">
-      <Dropdown handleChange={handlerFilter} />
+      <Dropdown handleChange={handlerFilter} search={handleSearch} />
       <div className="even-container">
         {filteredEvents.map((event) => (
           <EventCard

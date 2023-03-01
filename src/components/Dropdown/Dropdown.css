@@ -15,5 +15,18 @@
   padding-bottom: 1em;
 }
 .radio {
+  font-size: 1.2em;
+  font-weight: 500;
   display: flex;
+  flex-direction: column;
+}
+.radio > div {
+  display: flex;
+  align-items: center;
+}
+.bookmarktag {
+  margin-left: auto;
+}
+.seats {
+  margin-left: auto;
 }
