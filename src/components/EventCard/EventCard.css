@@ -1,0 +1,59 @@
+.card {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 250px;
+  background-color: black;
+  border-style: none;
+  border-radius: 10px;
+  color: white;
+}
+.image {
+  overflow: hidden;
+  height: 130px;
+  border-bottom: 2px solid gray;
+}
+.event-details {
+  justify-content: space-evenly;
+  font-family: 'Sofia Sans', sans-serif;
+}
+.image img {
+  width: 100%;
+  object-fit: contain;
+}
+.event-text {
+  height: 175px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: center;
+  padding: 0.5em;
+}
+.event-title {
+  font-family: 'Big Shoulders Display', cursive;
+  height: 30px;
+  font-weight: bold;
+  font-size: 1.3em;
+}
+.event-description {
+  font-weight: 300;
+  width: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+.event-venue,
+.event-date span {
+  font-weight: 600;
+}
+.event-venue {
+  font-weight: 300;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+.event-date {
+  font-weight: 300;
+}
