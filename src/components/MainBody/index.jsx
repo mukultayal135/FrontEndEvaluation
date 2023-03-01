@@ -7,14 +7,17 @@ import {
 } from '../../constants/apiEndPoints';
 import makeRequest from '../../utils/makeRequest';
 import EventCard from '../EventCard';
+import Dropdown from '../Dropdown';
 import './MainBody.css';
 
 const MainBody = () => {
   const [events, setEvents] = useState();
+  const [filteredEvents, setFilteredEvents] = useState();
   const navigate = useNavigate();
   useEffect(() => {
     makeRequest(GET_EVENT_DATA, {}, navigate).then((response) => {
       setEvents(response);
+      setFilteredEvents(response);
     });
   }, []);
   const bookMarkHandler = (eventId, current) => {
@@ -39,10 +42,29 @@ const MainBody = () => {
       setEvents(updatedEvents);
     });
   };
-  return events ? (
+  const handlerFilter = (e) => {
+    const tag = e.target.value;
+    if (tag === 'All') {
+      setFilteredEvents(events);
+    } else if (tag === 'Bookmarked') {
+      setFilteredEvents(
+        events.filter((singleEvent) => singleEvent.isBookmarked === true)
+      );
+    } else if (tag === 'SeatsAvailable') {
+      setFilteredEvents(
+        events.filter((singleEvent) => singleEvent.areSeatsAvailable === true)
+      );
+    } else if (tag === 'Registered') {
+      setFilteredEvents(
+        events.filter((singleEvent) => singleEvent.isRegistered === true)
+      );
+    }
+  };
+  return filteredEvents ? (
     <div className="mainbody">
+      <Dropdown handleChange={handlerFilter} />
       <div className="even-container">
-        {events.map((event) => (
+        {filteredEvents.map((event) => (
           <EventCard
             key={event.id}
             event={event}
