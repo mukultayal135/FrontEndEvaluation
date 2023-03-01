@@ -1,9 +1,14 @@
+/* eslint-disable no-nested-ternary */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { getFormattedDateFromUtcDate } from '../../utils/common/date';
+import Bookmark from '../Bookmark';
+import checked from '../../assets/circle-check-solid.svg';
+import circleCross from '../../assets/circle-xmark-solid.svg';
+
 import './EventCard.css';
 
-const EventCard = ({ event }) => {
+const EventCard = ({ event, bookMarkHandler }) => {
   return (
     <div className="card ">
       <div className="image">
@@ -22,12 +27,39 @@ const EventCard = ({ event }) => {
             {getFormattedDateFromUtcDate(event.datetime)}
           </div>
         </div>
+        <div className="reactions">
+          {event.isRegistered ? (
+            <div className="registered">
+              <img src={checked} className="checked" alt="checked" />
+              <span>REGISTERED</span>
+            </div>
+          ) : !event.areSeatsAvailable ? (
+            <div className="availability">
+              <img
+                src={circleCross}
+                className="circleCross"
+                alt="circleCross"
+              />
+              <span>NO SEATS AVAILABLE</span>
+            </div>
+          ) : (
+            false
+          )}
+          <div className="bookmark-container">
+            <Bookmark
+              eventId={event.id}
+              bookmark={event.isBookmarked}
+              bookmarkHandler={bookMarkHandler}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
 EventCard.propTypes = {
+  bookMarkHandler: PropTypes.func.isRequired,
   event: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,

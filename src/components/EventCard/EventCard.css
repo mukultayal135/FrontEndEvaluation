@@ -9,11 +9,14 @@
   color: white;
 }
 .image {
+  border-radius: 10px;
   overflow: hidden;
   height: 130px;
   border-bottom: 2px solid gray;
 }
 .event-details {
+  display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   font-family: 'Sofia Sans', sans-serif;
 }
@@ -56,4 +59,41 @@
 }
 .event-date {
   font-weight: 300;
+}
+.reactions {
+  padding: 0.5em;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+.reactions .bookmark-container {
+  margin-left: auto;
+}
+.checked {
+  filter: invert(92%) sepia(5%) saturate(2585%) hue-rotate(68deg)
+    brightness(94%) contrast(103%);
+  height: 30px;
+  width: 30px;
+}
+.circleCross {
+  filter: invert(92%) sepia(35%) saturate(5352%) hue-rotate(298deg)
+    brightness(125%) contrast(86%);
+  height: 30px;
+  width: 30px;
+}
+.registered {
+  display: flex;
+  align-items: center;
+  color: #a0f3ad;
+}
+.registered span {
+  padding-left: 0.5em;
+}
+.availability {
+  display: flex;
+  align-items: center;
+  color: #ececab;
+}
+.availability span {
+  padding-left: 0.5em;
 }
