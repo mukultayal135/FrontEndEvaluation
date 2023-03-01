@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Proptypes from 'prop-types';
 import filterImg from '../../assets/filter-solid.svg';
 import closeFilter from '../../assets/chevron-up-solid.svg';
+import seachIcon from '../../assets/magnifying-glass-solid.svg';
 import './Dropdown.css';
 
 const Dropdown = ({ handleChange, search }) => {
@@ -11,23 +12,27 @@ const Dropdown = ({ handleChange, search }) => {
   return (
     <div className="filter" onChange={(e) => handleChange(e)}>
       <div className="filter-tag">
-        <img src={filterImg} alt="filter" />
-        <span>FILTER</span>
-        <img
-          src={closeFilter}
-          alt="closetag"
-          onClick={() => {
-            setShow(!show);
-          }}
-        />
-        <div className="product-search">
+        <div>
+          <img src={filterImg} alt="filter" />
+          <span>FILTER</span>
+          <img
+            src={closeFilter}
+            alt="closetag"
+            onClick={() => {
+              setShow(!show);
+            }}
+          />
+        </div>
+
+        <div className="event-search">
           <input
             type="text"
-            placeholder="search"
+            placeholder="EVENT NAME"
             onChange={(e) => {
               search(e);
             }}
           />
+          <img src={seachIcon} alt="searchIcon" className="searchIcon" />
         </div>
       </div>
       {show ? (
