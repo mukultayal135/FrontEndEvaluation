@@ -87,7 +87,7 @@ const MainBody = () => {
       </div>
     </div>
   ) : (
-    <div className="blogDataLoader">
+    <div className="DataLoader">
       <p>Loading....</p>
     </div>
   );

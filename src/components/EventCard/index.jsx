@@ -20,7 +20,7 @@ const EventCard = ({
 }) => {
   const navigate = useNavigate();
   return (
-    <div
+    <div data-testid="event-card"
       className="card"
       onClick={() => {
         navigate(`/userDetails/${event.id}`);
