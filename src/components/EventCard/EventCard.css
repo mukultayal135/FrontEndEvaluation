@@ -7,6 +7,7 @@
   border-style: none;
   border-radius: 10px;
   color: white;
+  padding-bottom: 1em;
 }
 .image {
   border-radius: 10px;
@@ -96,4 +97,16 @@
 }
 .availability span {
   padding-left: 0.5em;
+}
+.register-button {
+  display: flex;
+  justify-content: center;
+}
+.register-button button {
+  border-style: none;
+  background-color: white;
+  color: black;
+  font-weight: 900;
+  border-radius: 5px;
+  padding: 0.5em;
 }

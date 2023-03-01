@@ -1,6 +1,10 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable no-nested-ternary */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 import { getFormattedDateFromUtcDate } from '../../utils/common/date';
 import Bookmark from '../Bookmark';
 import checked from '../../assets/circle-check-solid.svg';
@@ -8,9 +12,20 @@ import circleCross from '../../assets/circle-xmark-solid.svg';
 
 import './EventCard.css';
 
-const EventCard = ({ event, bookMarkHandler }) => {
+const EventCard = ({
+  event,
+  bookMarkHandler,
+  singleDetail,
+  handleRegister,
+}) => {
+  const navigate = useNavigate();
   return (
-    <div className="card ">
+    <div
+      className="card"
+      onClick={() => {
+        navigate(`/userDetails/${event.id}`);
+      }}
+    >
       <div className="image">
         <img src={event.imgUrl} alt="" />
       </div>
@@ -53,13 +68,29 @@ const EventCard = ({ event, bookMarkHandler }) => {
             />
           </div>
         </div>
+        <div className="register-button">
+          {singleDetail && event.areSeatsAvailable ? (
+            <button
+              type="button"
+              onClick={() => {
+                handleRegister(event.isRegistered, event.id);
+              }}
+            >
+              {event.isRegistered ? 'UNREGISTER' : 'REGISTER'}
+            </button>
+          ) : (
+            false
+          )}
+        </div>
       </div>
     </div>
   );
 };
 
 EventCard.propTypes = {
+  singleDetail: PropTypes.bool.isRequired,
   bookMarkHandler: PropTypes.func.isRequired,
+  handleRegister: PropTypes.func.isRequired,
   event: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,

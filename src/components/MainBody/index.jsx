@@ -47,6 +47,8 @@ const MainBody = () => {
             key={event.id}
             event={event}
             bookMarkHandler={bookMarkHandler}
+            singleDetail={false}
+            handleRegister={() => {}}
           />
         ))}
       </div>

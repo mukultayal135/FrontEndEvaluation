@@ -9,3 +9,8 @@ export const UPDATE_EVENT_DATA = (id) => ({
   url: `/events/${id}`,
   method: 'patch',
 });
+
+export const GET_EVENT_BY_ID = (id) => ({
+  url: `/events/${id}`,
+  method: 'get',
+});

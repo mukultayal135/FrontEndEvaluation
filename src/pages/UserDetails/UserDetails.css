@@ -1,0 +1,11 @@
+.single-card {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  align-items: center;
+}
+.user-details {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
