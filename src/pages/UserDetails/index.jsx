@@ -6,7 +6,7 @@ import {
   GET_EVENT_DATA,
   UPDATE_EVENT_DATA,
 } from '../../constants/apiEndPoints';
-import { Navbar, EventCard } from '../../components';
+import { Navbar, EventCard, Footer } from '../../components';
 import makeRequest from '../../utils/makeRequest';
 import './UserDetails.css';
 
@@ -83,6 +83,7 @@ const UserDetails = () => {
           id={id}
         />
       </div>
+      <Footer />
     </div>
   ) : (
     <div className="blogDataLoader">

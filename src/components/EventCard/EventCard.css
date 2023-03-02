@@ -10,7 +10,8 @@
   padding-bottom: 1em;
 }
 .image {
-  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   overflow: hidden;
   height: 130px;
   border-bottom: 2px solid gray;
@@ -58,7 +59,8 @@
   -webkit-line-clamp: 1;
   overflow: hidden;
 }
-.event-date {
+.event-date,
+.event-venue {
   font-weight: 300;
 }
 .reactions {

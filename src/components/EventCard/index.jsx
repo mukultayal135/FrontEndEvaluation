@@ -2,9 +2,10 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable no-nested-ternary */
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import { ThemeContext } from '../../contexts/ThemeContext';
 import { getFormattedDateFromUtcDate } from '../../utils/common/date';
 import Bookmark from '../Bookmark';
 import checked from '../../assets/circle-check-solid.svg';
@@ -18,9 +19,12 @@ const EventCard = ({
   singleDetail,
   handleRegister,
 }) => {
+  const { preferredTheme } = useContext(ThemeContext);
   const navigate = useNavigate();
   return (
-    <div data-testid="event-card"
+    <div
+      style={{ backgroundColor: preferredTheme }}
+      data-testid="event-card"
       className="card"
       onClick={() => {
         navigate(`/userDetails/${event.id}`);

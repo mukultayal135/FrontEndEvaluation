@@ -1,0 +1,22 @@
+.footer-content {
+  display: flex;
+  width: 80%;
+  margin: auto;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+}
+.footer-container {
+  width: 50%;
+  display: flex;
+  gap: 0px 30px;
+}
+.save-button {
+  width: 30%;
+}
+.footer-container > button {
+  padding: 1em;
+}
+.save-button > button {
+  padding: 2em;
+}

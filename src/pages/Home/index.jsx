@@ -1,11 +1,12 @@
 import React from 'react';
-import { Navbar, MainBody } from '../../components';
+import { Navbar, MainBody, Footer } from '../../components';
 
 const Home = () => {
   return (
     <div className="home">
       <Navbar />
       <MainBody />
+      <Footer />
     </div>
   );
 };
