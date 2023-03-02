@@ -2,6 +2,7 @@
   width: 80%;
   margin: auto;
   margin-bottom: 1em;
+  flex-grow: 1;
 }
 .even-container {
   margin-top: 4em;

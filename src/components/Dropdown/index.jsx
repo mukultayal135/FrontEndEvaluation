@@ -10,7 +10,7 @@ import './Dropdown.css';
 const Dropdown = ({ handleChange, search }) => {
   const [show, setShow] = useState(true);
   return (
-    <div className="filter" onChange={(e) => handleChange(e)}>
+    <div className="filter">
       <div className="filter-tag">
         <div>
           <img src={filterImg} alt="filter" />
@@ -36,7 +36,7 @@ const Dropdown = ({ handleChange, search }) => {
         </div>
       </div>
       {show ? (
-        <div className="radio">
+        <div className="radio" onChange={(e) => handleChange(e)}>
           <div>
             <input type="radio" value="All" name="filter" /> All
             <input

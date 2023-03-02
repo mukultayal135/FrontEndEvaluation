@@ -11,8 +11,10 @@ import Dropdown from '../Dropdown';
 import './MainBody.css';
 
 const MainBody = () => {
-  const [events, setEvents] = useState();
+  const [events, setEvents] = useState([]);
   const [filteredEvents, setFilteredEvents] = useState();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterTerm, setFilterTerm] = useState('All');
   const navigate = useNavigate();
   useEffect(() => {
     makeRequest(GET_EVENT_DATA, {}, navigate).then((response) => {
@@ -20,6 +22,41 @@ const MainBody = () => {
       setFilteredEvents(response);
     });
   }, []);
+  useEffect(() => {
+    console.log('filterTerm', filterTerm);
+    console.log('searchTerm', searchTerm);
+    if (filterTerm === 'All') {
+      setFilteredEvents(
+        events.filter((singleEvent) =>
+          singleEvent.name.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      );
+    } else if (filterTerm === 'Bookmarked') {
+      setFilteredEvents(
+        events.filter(
+          (singleEvent) =>
+            singleEvent.isBookmarked === true &&
+            singleEvent.name.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      );
+    } else if (filterTerm === 'SeatsAvailable') {
+      setFilteredEvents(
+        events.filter(
+          (singleEvent) =>
+            singleEvent.areSeatsAvailable === true &&
+            singleEvent.name.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      );
+    } else if (filterTerm === 'Registered') {
+      setFilteredEvents(
+        events.filter(
+          (singleEvent) =>
+            singleEvent.isRegistered === true &&
+            singleEvent.name.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      );
+    }
+  }, [filterTerm, searchTerm, events]);
   const bookMarkHandler = (eventId, current) => {
     makeRequest(
       UPDATE_EVENT_DATA(eventId),
@@ -43,33 +80,37 @@ const MainBody = () => {
     });
   };
   const handleSearch = (e) => {
-    if (e.target.value === '') {
-      setFilteredEvents(events);
-    } else {
-      setFilteredEvents(
-        filteredEvents.filter((singleEvent) =>
-          singleEvent.name.toLowerCase().includes(e.target.value.toLowerCase())
-        )
-      );
-    }
+    console.log(e.target.value);
+    setSearchTerm(e.target.value);
+    // if (e.target.value === '') {
+    //   setFilteredEvents(events);
+    // } else {
+    //   setFilteredEvents(
+    //     filteredEvents.filter((singleEvent) =>
+    //       singleEvent.name.toLowerCase().includes(e.target.value.toLowerCase())
+    //     )
+    //   );
+    // }
   };
   const handlerFilter = (e) => {
-    const tag = e.target.value;
-    if (tag === 'All') {
-      setFilteredEvents(events);
-    } else if (tag === 'Bookmarked') {
-      setFilteredEvents(
-        events.filter((singleEvent) => singleEvent.isBookmarked === true)
-      );
-    } else if (tag === 'SeatsAvailable') {
-      setFilteredEvents(
-        events.filter((singleEvent) => singleEvent.areSeatsAvailable === true)
-      );
-    } else if (tag === 'Registered') {
-      setFilteredEvents(
-        events.filter((singleEvent) => singleEvent.isRegistered === true)
-      );
-    }
+    console.log('filter: ', e.target.value);
+    setFilterTerm(e.target.value);
+    // const tag = e.target.value;
+    // if (tag === 'All') {
+    //   setFilteredEvents(events);
+    // } else if (tag === 'Bookmarked') {
+    //   setFilteredEvents(
+    //     events.filter((singleEvent) => singleEvent.isBookmarked === true)
+    //   );
+    // } else if (tag === 'SeatsAvailable') {
+    //   setFilteredEvents(
+    //     events.filter((singleEvent) => singleEvent.areSeatsAvailable === true)
+    //   );
+    // } else if (tag === 'Registered') {
+    //   setFilteredEvents(
+    //     events.filter((singleEvent) => singleEvent.isRegistered === true)
+    //   );
+    // }
   };
   return filteredEvents ? (
     <div className="mainbody">
